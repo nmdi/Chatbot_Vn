@@ -1,0 +1,102 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Xin chào",
+        "Hello",
+        "Chào bạn",
+        "Hi",
+        "Hey",
+        "Có ai ở đó không?",
+        "Chào buổi sáng",
+        "Chào buổi tối",
+        "Mình mới vào đây",
+        "Alo alo"
+      ],
+      "responses": [
+        "Chào bạn!",
+        "Xin chào, mình là ChatBot đây!",
+        "Rất vui được gặp bạn!"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Tạm biệt",
+        "Bye",
+        "Hẹn gặp lại",
+        "Chào tạm biệt",
+        "Tôi đi đây",
+        "Tạm biệt nhé",
+        "See you later",
+        "Catch you later",
+        "Goodbye",
+        "Bye bye"
+      ],
+      "responses": [
+        "Tạm biệt nhé!",
+        "Hẹn gặp lại!",
+        "Chúc bạn một ngày tốt lành!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Cảm ơn",
+        "Cảm ơn bạn",
+        "Thanks",
+        "Thank you",
+        "Cảm ơn nhiều nhé",
+        "Cảm ơn rất nhiều",
+        "Thank you so much",
+        "Cảm ơn nha",
+        "Biết ơn bạn lắm",
+        "Thanks a lot"
+      ],
+      "responses": [
+        "Không có gì!",
+        "Rất vui được giúp bạn!",
+        "Bạn cứ thoải mái hỏi tiếp nhé!"
+      ]
+    },
+    {
+      "tag": "name",
+      "patterns": [
+        "Bạn tên gì",
+        "Tên bạn là gì",
+        "Tên của bạn",
+        "Cho mình biết tên bạn đi",
+        "Bạn là ai",
+        "Tên bạn gọi là gì thế?",
+        "Mình đang nói chuyện với ai vậy?",
+        "Bạn có tên không?",
+        "Tên chatbot là gì?",
+        "Gọi bạn là gì được nhỉ?"
+      ],
+      "responses": [
+        "Mình là ChatBot dễ thương ^^",
+        "Mình tên là ChatBot, bạn tên gì nè?"
+      ]
+    },
+    {
+      "tag": "weather",
+      "patterns": [
+        "Thời tiết hôm nay thế nào",
+        "Trời có mưa không",
+        "Thời tiết ra sao",
+        "Trời có lạnh không",
+        "Hôm nay trời nắng à?",
+        "Tình hình thời tiết như nào",
+        "Hôm nay có mưa không bạn?",
+        "Nhiệt độ hôm nay là bao nhiêu?",
+        "Có cần mang ô không?",
+        "Trời có gió không?"
+      ],
+      "responses": [
+        "Mình chưa biết thời tiết đâu, nhưng bạn có thể hỏi Google nhé 😄",
+        "Bạn muốn mình tích hợp thời tiết luôn không?"
+      ]
+    }
+  ]
+}

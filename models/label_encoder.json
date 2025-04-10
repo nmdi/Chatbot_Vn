@@ -1,0 +1,7 @@
+{
+  "goodbye": 0,
+  "greeting": 1,
+  "name": 2,
+  "thanks": 3,
+  "weather": 4
+}
