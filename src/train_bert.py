@@ -15,12 +15,14 @@ MAX_LEN = 64
 BATCH_SIZE = 8
 EPOCHS = 4
 
-# 📁 Đường dẫn
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-INTENTS_PATH = os.path.join(BASE_DIR, "data", "intents.json")
-MODEL_DIR = os.path.join(BASE_DIR, "models")
+# 📁 Đường dẫn dựa trên vị trí src/train_model.py
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))               # src/
+BASE_DIR = os.path.dirname(CURRENT_DIR)                                # Chatbot_Vn/
+APP_DIR = os.path.join(BASE_DIR, "app")
+MODEL_DIR = os.path.join(APP_DIR, "models")
 MODEL_PATH = os.path.join(MODEL_DIR, "phobert_intent_classifier.pt")
 ENCODER_PATH = os.path.join(MODEL_DIR, "label_encoder.json")
+INTENTS_PATH = os.path.join(BASE_DIR, "data", "intents.json")
 
 # 🔧 Tạo thư mục models nếu chưa có
 os.makedirs(MODEL_DIR, exist_ok=True)
