@@ -4,10 +4,10 @@ import os
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from pyvi import ViTokenizer
 import numpy as np
-from utils import load_label_encoder
+from .utils import load_label_encoder
 
-MODEL_PATH = os.path.join("models", "phobert_intent_classifier.pt")
-ENCODER_PATH = os.path.join("models", "label_encoder.json")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "phobert_intent_classifier.pt")
+ENCODER_PATH = os.path.join(os.path.dirname(__file__), "models", "label_encoder.json")
 INTENT_PATH = os.path.join("data", "intents.json")
 MODEL_NAME = "vinai/phobert-base"
 MAX_LEN = 64
