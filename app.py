@@ -1,5 +1,5 @@
 import streamlit as st
-from chatbot_phobert import predict_intent, get_response
+from src.chatbot_phobert import predict_intent, get_response
 
 # Streamlit setup
 st.set_page_config(page_title="PhoBERT ChatBot", page_icon="🤖")
