@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from chatbot import predict_intent, get_response
+from .chatbot import predict_intent, get_response
 
 router = APIRouter()
 
@@ -15,7 +15,8 @@ class ChatResponse(BaseModel):
 @router.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
     intent, confidence = predict_intent(request.message)
-    if confidence > 0.6:
+    print(f"Intent: {intent}, Confidence: {confidence}")
+    if confidence > 0.2:
         response = get_response(intent)
     else:
         response = "Mình chưa hiểu rõ ý bạn, bạn có thể nói lại không?"
