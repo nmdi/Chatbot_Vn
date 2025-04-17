@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatBot PhoBERT</title>
+  <style>
+    body { font-family: Arial; padding: 20px; max-width: 600px; margin: auto; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 10px; }
+    .user { text-align: right; color: blue; }
+    .bot { text-align: left; color: green; }
+    input[type="text"] { width: 80%; padding: 10px; }
+    button { padding: 10px 15px; }
+  </style>
+</head>
+<body>
+  <h2>🤖 ChatBot PhoBERT</h2>
+  <div id="chat"></div>
+  <input type="text" id="message" placeholder="Nhập nội dung..." />
+  <button onclick="sendMessage()">Gửi</button>
+
+  <script>
+    async function sendMessage() {
+      const msg = document.getElementById("message").value;
+      if (!msg.trim()) return;
+
+      const chatDiv = document.getElementById("chat");
+      chatDiv.innerHTML += `<div class="user"><strong>Bạn:</strong> ${msg}</div>`;
+
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+
+      const data = await res.json();
+      chatDiv.innerHTML += `<div class="bot"><strong>Bot:</strong> ${data.response}</div>`;
+      document.getElementById("message").value = '';
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+  </script>
+</body>
+</html>

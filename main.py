@@ -1,24 +1,17 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, Response
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.api import router
 
 app = FastAPI()
+
+# Gắn API
 app.include_router(router)
 
-@app.get("/", response_class=HTMLResponse)
-async def root():
-    return """
-    <html>
-        <head>
-            <title>ChatBot API</title>
-        </head>
-        <body>
-            <h1>Chào mừng đến với ChatBot PhoBERT API!</h1>
-            <p>Gửi POST request đến <code>/chat</code> với {"message": "nội dung"} để nhận phản hồi.</p>
-        </body>
-    </html>
-    """
+# Gắn thư mục static (nơi chứa HTML)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
-@app.get("/favicon.ico")
-async def favicon():
-    return Response(content="", media_type="image/x-icon")
+# Route mặc định: tải giao diện chat
+@app.get("/")
+def root():
+    return FileResponse("app/static/index.html")
