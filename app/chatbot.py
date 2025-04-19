@@ -5,6 +5,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from pyvi import ViTokenizer
 import numpy as np
 from .utils import load_label_encoder
+from .generator import generate_reply
 
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "phobert_intent_classifier.pt")
 ENCODER_PATH = os.path.join(os.path.dirname(__file__), "models", "label_encoder.json")
@@ -38,5 +39,7 @@ def predict_intent(text: str):
 def get_response(intent: str) -> str:
     for item in intent_data["intents"]:
         if item["tag"] == intent:
-            return np.random.choice(item["responses"])
+            example = np.random.choice(item["responses"])
+            prompt = f"Người dùng hỏi về: {intent}. Trả lời một cách thân thiện: {example}"
+            return generate_reply(prompt)
     return "Mình chưa hiểu rõ ý bạn, bạn nói lại được không?"
