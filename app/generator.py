@@ -1,24 +1,23 @@
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
-import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
-# Chọn mô hình sinh văn bản tiếng Việt (GPT-2 đã fine-tuned)
-MODEL_NAME = "VietAI/gpt2-news-title"
+# Tên model tiếng Việt thay thế
+MODEL_NAME = "vblagoje/gpt2-medium-vietnamese"
 
-# Load model & tokenizer
-tokenizer = GPT2Tokenizer.from_pretrained(MODEL_NAME)
-model = GPT2LMHeadModel.from_pretrained(MODEL_NAME)
-model.eval()
+# Tải tokenizer và model
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
 
-def generate_reply(prompt: str, max_length: int = 50) -> str:
-    input_ids = tokenizer.encode(prompt, return_tensors="pt")
-    with torch.no_grad():
-        output = model.generate(
-            input_ids,
-            max_length=max_length,
-            num_return_sequences=1,
-            no_repeat_ngram_size=2,
-            pad_token_id=tokenizer.eos_token_id,
-            top_p=0.9,
-            temperature=0.7
-        )
-    return tokenizer.decode(output[0], skip_special_tokens=True)
+# Hàm tạo phản hồi từ prompt đầu vào
+def generate_reply(prompt, max_length=50):
+    inputs = tokenizer.encode(prompt, return_tensors="pt")
+    outputs = model.generate(
+        inputs,
+        max_length=max_length,
+        do_sample=True,
+        top_k=50,
+        top_p=0.95,
+        temperature=0.8,
+        num_return_sequences=1
+    )
+    reply = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    return reply
